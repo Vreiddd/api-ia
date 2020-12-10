@@ -40,28 +40,64 @@ Compte rendu en raw bytes.
 Retourne les maladies potentielles et leurs probabilités ainsi les symptômes associés.
 ```JSON
 {
-    "diseases": [
-        {
-            "disease": "Adenoma - Basophil",
-            "probability": 0.10171734599604695
-        },
-        {
-            "disease": "Coproporphyria - Hereditary",
-            "probability": 0.10171734599604695
-        },
-        {
-            "disease": "Chondrosarcoma - Mesenchymal",
-            "probability": 0.10048067243340904
-        },
-        {
-            "disease": "Papilloma - Choroid Plexus",
-            "probability": 0.10048067243340904
-        },
-    ],
-    "symptoms": [
-        "Headache",
-        "Vomiting"
-    ]
+    "id": 4806,
+    "uuid_doctor": "123e4567-e89b-12d3-a456-426655440002",
+    "uuid_patient": null,
+    "prediction": {
+        "diseases": [
+            {
+                "disease": "Albuminuria",
+                "probability": 0.14112404609491871
+            },
+            {
+                "disease": "Pericarditis - Constrictive",
+                "probability": 0.13488754115798504
+            },
+            {
+                "disease": "Cushing Syndrome",
+                "probability": 0.119588179644354
+            },
+            {
+                "disease": "Primary Ovarian Insufficiency",
+                "probability": 0.0997746547086913
+            },
+            {
+                "disease": "Hemorrhagic Disorders",
+                "probability": 0.09686901193848944
+            },
+            {
+                "disease": "Aortic Valve Insufficiency",
+                "probability": 0.08700586331927278
+            },
+            {
+                "disease": "Heart Valve Diseases",
+                "probability": 0.08163271932029344
+            },
+            {
+                "disease": "Paraneoplastic Endocrine Syndromes",
+                "probability": 0.08093434727000175
+            },
+            {
+                "disease": "Lymphedema",
+                "probability": 0.0799254302387167
+            },
+            {
+                "disease": "Hepatomegaly",
+                "probability": 0.07825820630727674
+            }
+        ],
+        "symptoms": [
+            "overweight",
+            "obesity",
+            "fever",
+            "cyanosis",
+            "edema",
+            "eye manifestations",
+            "fatigue",
+            "flushing"
+        ]
+    },
+    "report": "overweight and obesity, fever with cyanosis and an edema, eye manifestations and fatigue with flushing"
 }
 ```
 #### <code>POST</code> /diagnostics
@@ -73,6 +109,25 @@ Création d'un diagnostic.
 Nécessite l'entièreté des champs du diagnostic sous format JSON.
 ```JSON
 {
+    "uuid_doctor": "123e4567-e89b-12d3-a456-426655440002",
+    "uuid_patient": null,
+    "prediction": {
+        "diseases": [
+            {
+                "disease": "Albuminuria",
+                "probability": 0.14112404609491871
+            },
+            {
+                "disease": "Pericarditis - Constrictive",
+                "probability": 0.13488754115798504
+            }
+        ],
+        "symptoms": [
+            "overweight",
+            "obesity"
+        ]
+    },
+    "report": "overweight and obesity"
 }
 ```
 ###### Sortie
@@ -80,6 +135,26 @@ Nécessite l'entièreté des champs du diagnostic sous format JSON.
 Retourne le diagnostic créé avec notamment son id.
 ```JSON
 {
+    "id": 1349,
+    "uuid_doctor": "123e4567-e89b-12d3-a456-426655440002",
+    "uuid_patient": null,
+    "prediction": {
+        "diseases": [
+            {
+                "disease": "Albuminuria",
+                "probability": 0.14112404609491871
+            },
+            {
+                "disease": "Pericarditis - Constrictive",
+                "probability": 0.13488754115798504
+            }
+        ],
+        "symptoms": [
+            "overweight",
+            "obesity"
+        ]
+    },
+    "report": "overweight and obesity"
 }
 ```
 
@@ -105,28 +180,65 @@ Obtention d'un diagnostic précédement créé.
 Retourne une liste de diagnostics correspondant à la requête.
 
 ```JSON
-{
-  "diagnostics": [
+[
     {
-      "id": "114a4527",
-      "uuid_doctor": "123e4567-e89b-12d3-a456-426655440002",
-      "uuid_patient": "123e4567-e89b-12d3-a456-42665544021",
-      "report": "some headache with vomiting",
-      "date": "08/03/2020",
-      "diseases": ["Schizophrenia", "Breast Neoplasms"],
-      "symptoms": ["Headache", "Vomiting"]
+        "id": 4921,
+        "uuid_doctor": "123",
+        "uuid_patient": "7890",
+        "prediction": {
+            "diseases": [
+                {
+                    "disease": "Hepatomegaly",
+                    "probability": 913.0
+                },
+                {
+                    "disease": "Lymphedema",
+                    "probability": 3427.0
+                },
+                {
+                    "disease": "Paraneoplastic Endocrine Syndromes",
+                    "probability": 679.0
+                }
+            ],
+            "symptoms": [
+                "Flushing",
+                "Fever",
+                "Obesity",
+                "Overweight"
+            ]
+        },
+        "report": "overweight and obesity, fever with cyanosis and an edema, eye manifestations and fatigue with flushing"
     },
     {
-      "id": "567493s",
-      "uuid_doctor": "123e4567-e89b-12d3-a456-426655440002",
-      "uuid_patient": null,
-      "report": "back pain with headache",
-      "date": "02/03/2020",
-      "diseases": ["Schizophrenia", "Breast Neoplasms"],
-      "symptoms": ["Headache", "Back Pain"]
+        "id": 4832,
+        "uuid_doctor": "123",
+        "uuid_patient": "7890",
+        "prediction": {
+            "diseases": [
+                {
+                    "disease": "Primary Ovarian Insufficiency",
+                    "probability": 4760.0
+                },
+                {
+                    "disease": "Cushing Syndrome",
+                    "probability": 5493.0
+                },
+                {
+                    "disease": "Albuminuria",
+                    "probability": 3688.0
+                }
+            ],
+            "symptoms": [
+                "Flushing",
+                "Fatigue",
+                "Eye Manifestations",
+                "Edema",
+                "Cyanosis"
+            ]
+        },
+        "report": "overweight and obesity, eye manifestations and fatigue with flushing"
     }
-  ]
-}
+]
 ```
 
 #### <code>PUT</code> /diagnostics/:id
@@ -140,13 +252,25 @@ Mise à jour complète d'un diagnostic par son id.
 Nécessite l'entièreté des champs du diagnostic sous format JSON.
 ```JSON
 {
-}
-```
-###### Sortie
-
-Retourne le diagnostic mis à jour.
-```JSON
-{
+    "uuid_doctor": "123e4567-e89b-12d3-a456-426655440002",
+    "uuid_patient": "786-yz55-792-55segb",
+    "prediction": {
+        "diseases": [
+            {
+                "disease": "Albuminuria",
+                "probability": 0.14112404609491871
+            },
+            {
+                "disease": "Pericarditis - Constrictive",
+                "probability": 0.13488754115798504
+            }
+        ],
+        "symptoms": [
+            "overweight",
+            "obesity"
+        ]
+    },
+    "report": "overweight and obesity"
 }
 ```
 
@@ -161,13 +285,7 @@ Mise à jour partielle d'un diagnostic par son id.
 Envoi des champs spécifiques à modifier sous format JSON.
 ```JSON
 {
-}
-```
-###### Sortie
-
-Retourne le diagnostic mis à jour.
-```JSON
-{
+    "report": "overweight and obesity with fever"
 }
 ```
 
@@ -190,9 +308,21 @@ Création d'un feedback.
 Nécessite l'entièreté des champs du feedback sous format JSON.
 ```JSON
 {
-  "report_id": "74201r2",
-  "text": "New back pain",
-  "diseases": ["Back Pain", "Headache"]
+    "diagnostic_id": "4792",
+    "uuid_doctor": "123",
+    "text": "wrong medication",
+    "diseases": [
+        {
+            "name": "Schizophrenia",
+            "comment": "Schizophrenia should have an higher probability"
+        }
+    ],
+    "symptoms": [
+        {
+            "name": "Back Pain",
+            "comment": "Back Pain should not be concerned"
+        }
+    ]
 }
 ```
 ###### Sortie
@@ -200,10 +330,22 @@ Nécessite l'entièreté des champs du feedback sous format JSON.
 Retourne le feedback créé avec notamment son id.
 ```JSON
 {
-  "id": "419h23",
-  "report_id": "74201r2",
-  "text": "New back pain",
-  "diseases": ["Back Pain", "Headache"]
+    "id": 4807,
+    "diagnostic_id": "4792",
+    "uuid_doctor": "123",
+    "text": "wrong medication",
+    "diseases": [
+        {
+            "name": "Schizophrenia",
+            "comment": "Schizophrenia should have an higher probability"
+        }
+    ],
+    "symptoms": [
+        {
+            "name": "Back Pain",
+            "comment": "Back Pain should not be concerned"
+        }
+    ]
 }
 ```
 
@@ -215,7 +357,7 @@ Obtention d'un feedback précédement créé.
 
 ###### Queries
 
-* id_report: *sélectionne seulement les feedbacks reliés au diagnostic spécifié par l'id*
+* diagnostic_id: *sélectionne seulement les feedbacks reliés au diagnostic spécifié par l'id*
 * disease: *sélectionne seulement les feedbacks reliés à la maladie précisée*
 * limit: *nombre maximum de résultat*
 
@@ -229,14 +371,26 @@ Obtention d'un feedback précédement créé.
 Retourne une liste de feedback correspondant à la requête.
 
 ```JSON
-{
-  "feedbacks": [
-    "id": "419h23",
-    "report_id": "74201r2",
-    "text": "New back pain",
-    "diseases": ["Back Pain", "Headache"]
-  ]
-}
+[
+    {
+        "id": 4829,
+        "diagnostic_id": "4792",
+        "uuid_doctor": "123",
+        "text": "wrong medication",
+        "diseases": [
+            {
+                "name": "Schizophrenia",
+                "comment": "Schizophrenia should have an higher probability"
+            }
+        ],
+        "symptoms": [
+            {
+                "name": "Back Pain",
+                "comment": "Back Pain should not be concerned"
+            }
+        ]
+    }
+]
 ```
 
 #### <code>PUT</code> /feedbacks/:id
@@ -250,20 +404,21 @@ Mise à jour complète d'un feedback par son id.
 Nécessite l'entièreté des champs du feedback sous format JSON.
 ```JSON
 {
-    "report_id": "73403d1",
-    "text": "Break leg after surgery",
-    "diseases": ["Leg pain"]
-}
-```
-###### Sortie
-
-Retourne le feedback mis à jour.
-```JSON
-{
-    "id": "251f233",
-    "report_id": "73403d1",
-    "text": "Break leg after surgery",
-    "diseases": ["Leg pain"]
+    "diagnostic_id": "4792",
+    "uuid_doctor": "75t-y84z-hj8",
+    "text": "wrong medication",
+    "diseases": [
+        {
+            "name": "Schizophrenia",
+            "comment": "Schizophrenia should have an higher probability"
+        }
+    ],
+    "symptoms": [
+        {
+            "name": "Back Pain",
+            "comment": "Back Pain should not be concerned"
+        }
+    ]
 }
 ```
 
@@ -278,18 +433,7 @@ Mise à jour partielle d'un feedback par son id.
 Envoi des champs spécifiques à modifier sous format JSON.
 ```JSON
 {
-    "text": "Break leg after car accident",
-}
-```
-###### Sortie
-
-Retourne le feedback mis à jour.
-```JSON
-{
-    "id": "251f233",
-    "report_id": "73403d1",
-    "text": "Break leg after car accident",
-    "diseases": ["Leg pain"]
+    "text": "wrong medication and patient"
 }
 ```
 
