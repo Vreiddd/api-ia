@@ -47,6 +47,9 @@ overweight and obesity, fever with cyanosis and an edema, eye manifestations and
 ```
 
 ##### Sortie
+
+* 200 Ok
+
 Retourne les maladies potentielles et leurs probabilités ainsi les symptômes associés.
 ```JSON
 {
@@ -127,7 +130,13 @@ Internal Server Error
 
 Création d'un diagnostic.
 
-###### Entrée (body)
+##### Entrée
+
+###### Request params
+
+*Aucune donnée dans les headers de la requête nécéssaire*
+
+###### Body
 
 Nécessite l'entièreté des champs du diagnostic sous format JSON.
 ```JSON
@@ -153,7 +162,9 @@ Nécessite l'entièreté des champs du diagnostic sous format JSON.
     "report": "overweight and obesity"
 }
 ```
-###### Sortie
+##### Sortie
+
+* 200 Ok
 
 Retourne le diagnostic créé avec notamment son id.
 ```JSON
@@ -181,25 +192,48 @@ Retourne le diagnostic créé avec notamment son id.
 }
 ```
 
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Invalid input format
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>GET</code> /diagnostics
 
 Obtention d'un diagnostic précédement créé.
 - Par id: GET /diagnostics/:id
 - Par queries: GET /diagnostics?uuid_doctor=34&limit=15...
 
-###### Queries
+##### Queries
 
 * uuid_doctor: *sélectionne seulement les diagnostics avec l'uuid du médecin correspondant*
 * uuid_patient: *sélectionne seulement les diagnostics avec l'uuid du patient correspondant*
 * limit: *nombre maximum de résultat*
 
-###### Entrée
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
 
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
+
 *Aucune donnée dans le body de la requête nécéssaire*
 
-###### Sortie
+##### Sortie
+
+* 200 Ok
+
 Retourne une liste de diagnostics correspondant à la requête.
 
 ```JSON
@@ -264,13 +298,49 @@ Retourne une liste de diagnostics correspondant à la requête.
 ]
 ```
 
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+```
+Invalid ID
+```
+```
+Invalid que
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 404 Not Found
+```
+Not Found
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>PUT</code> /diagnostics/:id
 
 Mise à jour complète d'un diagnostic par son id.
 
-###### Entrée (body)
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
+
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
 
 Nécessite l'entièreté des champs du diagnostic sous format JSON.
 ```JSON
@@ -297,13 +367,47 @@ Nécessite l'entièreté des champs du diagnostic sous format JSON.
 }
 ```
 
+##### Sortie
+
+* 200 Ok
+
+*Aucune donnée dans le body*
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+```
+Invalid input data
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>PATCH</code> /diagnostics/:id
 
 Mise à jour partielle d'un diagnostic par son id.
 
-###### Entrée (body)
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
+
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
 
 Envoi des champs spécifiques à modifier sous format JSON.
 ```JSON
@@ -312,15 +416,72 @@ Envoi des champs spécifiques à modifier sous format JSON.
 }
 ```
 
+##### Sortie
+
+* 200 Ok
+
+*Aucune donnée dans le body*
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+```
+Invalid input data
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>DELETE</code> /diagnostics/:id
 
 Supprime un diagnostic par son id.
 
-###### Entrée (body)
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
 
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
+
 *Aucune donnée dans le body de la requête nécéssaire*
+
+##### Sortie
+
+* 200 Ok
+
+*Aucune donnée dans le body*
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
 
 #### <code>POST</code> /feedbacks
 
