@@ -308,7 +308,7 @@ Missing token
 Invalid ID
 ```
 ```
-Invalid que
+Invalid queries
 ```
 
 * 403 Forbidden
@@ -487,7 +487,13 @@ Internal Server Error
 
 Création d'un feedback.
 
-###### Entrée (body)
+##### Entrée
+
+###### Request params
+
+*Aucune donnée dans les headers de la requête nécéssaire*
+
+###### Body
 
 Nécessite l'entièreté des champs du feedback sous format JSON.
 ```JSON
@@ -509,7 +515,10 @@ Nécessite l'entièreté des champs du feedback sous format JSON.
     ]
 }
 ```
-###### Sortie
+
+##### Sortie
+
+* 200 Ok
 
 Retourne le feedback créé avec notamment son id.
 ```JSON
@@ -533,25 +542,53 @@ Retourne le feedback créé avec notamment son id.
 }
 ```
 
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Invalid input format
+```
+
+* 404 Not Found
+```
+Doctor not found
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>GET</code> /feedbacks
 
 Obtention d'un feedback précédement créé.
 - Par id: GET /feedbacks/:id
 - Par queries: GET /feedbacks?id_report=74201r2&disease=headache&limit=15...
 
-###### Queries
+##### Queries
 
 * diagnostic_id: *sélectionne seulement les feedbacks reliés au diagnostic spécifié par l'id*
 * disease: *sélectionne seulement les feedbacks reliés à la maladie précisée*
 * limit: *nombre maximum de résultat*
 
-###### Entrée
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
 
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
+
 *Aucune donnée dans le body de la requête nécéssaire*
 
-###### Sortie
+##### Sortie
+
+* 200 Ok
+
 Retourne une liste de feedback correspondant à la requête.
 
 ```JSON
@@ -577,13 +614,49 @@ Retourne une liste de feedback correspondant à la requête.
 ]
 ```
 
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+```
+Invalid ID
+```
+```
+Invalid queries
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 404 Not Found
+```
+Not Found
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>PUT</code> /feedbacks/:id
 
 Mise à jour complète d'un feedback par son id.
 
-###### Entrée (body)
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
+
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
 
 Nécessite l'entièreté des champs du feedback sous format JSON.
 ```JSON
@@ -606,13 +679,47 @@ Nécessite l'entièreté des champs du feedback sous format JSON.
 }
 ```
 
+##### Sortie
+
+* 200 Ok
+
+*Aucune donnée dans le body*
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+```
+Invalid input data
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>PATCH</code> /feedbacks/:id
 
 Mise à jour partielle d'un feedback par son id.
 
-###### Entrée (body)
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
+
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
 
 Envoi des champs spécifiques à modifier sous format JSON.
 ```JSON
@@ -621,25 +728,93 @@ Envoi des champs spécifiques à modifier sous format JSON.
 }
 ```
 
+##### Sortie
+
+* 200 Ok
+
+*Aucune donnée dans le body*
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+```
+Invalid input data
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>DELETE</code> /feedbacks/:id
 
 Supprime un feedback par son id.
 
-###### Entrée (body)
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
 
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
+
 *Aucune donnée dans le body de la requête nécéssaire*
+
+##### Sortie
+
+* 200 Ok
+
+*Aucune donnée dans le body*
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
 
 #### <code>GET</code> /symptoms
 
-###### Entrée
+##### Entrée
 
 >Token d'authentification nécessaire dans les headers
 
+###### Request params
+
+name         | example value        | rule     |
+-------------|----------------------|----------|
+token        | 90456543-gdbnj-55    | required |
+
+###### Body
+
 *Aucune donnée dans le body de la requête nécéssaire*
 
-###### Sortie
+##### Sortie
+
+* 200 Ok
+
 Retourne les archives de tout les symptomes.
 
 ```JSON
@@ -650,4 +825,21 @@ Retourne les archives de tout les symptomes.
     "Depression"
   ]
 }
+```
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing token
+```
+
+* 403 Forbidden
+```
+Invalid token
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
 ```
