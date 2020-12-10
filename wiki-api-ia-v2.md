@@ -30,13 +30,23 @@
 
 Permet d'envoyer le compte rendu du médecin à l'intelligence artificielle et de récupérer son résultat.
 
-###### Entrée (body)
+##### Entrée
 
->Token d'authentification nécessaire dans les headers
+###### Request params
 
+name         | example value        | rule     |
+-------------|----------------------|----------|
+uuid_doctor  | 90456543-gdbnj-55    | required |
+uuid_patient | 5664322-ttgvs-78g    | optional |
+
+
+###### Body
 Compte rendu en raw bytes.
+```
+overweight and obesity, fever with cyanosis and an edema, eye manifestations and fatigue with flushing
+```
 
-###### Sortie
+##### Sortie
 Retourne les maladies potentielles et leurs probabilités ainsi les symptômes associés.
 ```JSON
 {
@@ -100,6 +110,19 @@ Retourne les maladies potentielles et leurs probabilités ainsi les symptômes a
     "report": "overweight and obesity, fever with cyanosis and an edema, eye manifestations and fatigue with flushing"
 }
 ```
+
+###### Code d'erreurs
+
+* 400 Bad Request
+```
+Missing doctor's uuid in headers
+```
+
+* 500 Internal Server Error
+```
+Internal Server Error
+```
+
 #### <code>POST</code> /diagnostics
 
 Création d'un diagnostic.
